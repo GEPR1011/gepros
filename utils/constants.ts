@@ -377,7 +377,7 @@ export const TASKBAR_HEIGHT = 30;
 export const PACKAGE_DATA = {
   alias: "geprOS",
   author: {
-    name: "Guilherme Elias Pereira Ramalho",
+    name: "GEPR",
     // Contato global do Messenger: chave publica do dono do site. Cada visitante
     // recebe um par de chaves proprio, e as mensagens enviadas a este contato
     // chegam ao app Nostr do dono.
