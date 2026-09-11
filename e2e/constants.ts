@@ -45,7 +45,10 @@ export const EXCLUDED_CONSOLE_LOGS = (
     if (browserName === "chromium") {
       excludedConsoleLogs.push(
         "Failed to create WebGPU Context Provider",
-        "WebGPU is experimental on this platform"
+        "WebGPU is experimental on this platform",
+        // The CI runner has no GPU, so the WebGL wallpaper falls back to
+        // SwiftShader and Chromium logs a deprecation notice for it.
+        "Automatic fallback to software WebGL has been deprecated"
       );
     } else if (browserName === "firefox") {
       excludedConsoleLogs.push(

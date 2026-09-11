@@ -14,6 +14,7 @@ import * as BrowserFS from "public/System/BrowserFS/browserfs.min.js";
 import {
   UNKNOWN_STATE_CODES,
   get9pSize,
+  seedHttpFileSizes,
   supportsIndexedDB,
 } from "contexts/fileSystem/core";
 import FileSystemConfig from "contexts/fileSystem/FileSystemConfig";
@@ -283,10 +284,17 @@ const useAsyncFs = (): AsyncFSModule => {
       const setupFs = (writeToIndexedDB: boolean): void =>
         configure(FileSystemConfig(!writeToIndexedDB), () => {
           const loadedFs = BFSRequire("fs");
+          const loadedRootFs = loadedFs.getRootFS() as RootFileSystem;
+          const overlay = loadedRootFs.mntMap["/"] as unknown as
+            | { getOverlayedFileSystems?: () => { readable: unknown } }
+            | undefined;
+
+          // Must run before the first stat, or files get the gzipped size.
+          seedHttpFileSizes(overlay?.getOverlayedFileSystems?.().readable);
 
           fsRef.current = loadedFs;
           setFs(loadedFs);
-          setRootFs(loadedFs.getRootFS() as RootFileSystem);
+          setRootFs(loadedRootFs);
         });
 
       supportsIndexedDB().then(setupFs);

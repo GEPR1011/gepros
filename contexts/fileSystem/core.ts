@@ -103,6 +103,41 @@ export const parseDirectory = (array: FS9PV4[]): BFSFS => {
 
 export const fs9pToBfs = (): BFSFS => parseDirectory(fsroot);
 
+type SizedInode = { getData?: () => { size: number } };
+type HttpIndexBackend = {
+  _index?: { getInode: (path: string) => SizedInode | null };
+};
+
+/**
+ * BrowserFS builds every file in an HTTPRequest listing with size -1, and its
+ * stat() then asks the server with a HEAD request, trusting Content-Length.
+ * Hosts that gzip text (GitHub Pages, Apache with mod_deflate) answer with the
+ * compressed length, so a 10 KB JSON file is recorded as 3 KB and every later
+ * read comes back truncated. Seeding the real sizes from the 9p index before
+ * anything is read means the HEAD request never happens.
+ */
+export const seedHttpFileSizes = (backend: unknown): void => {
+  const httpIndex = (backend as HttpIndexBackend | undefined)?._index;
+
+  if (!httpIndex) return;
+
+  const walk = (nodes: FS9PV4[], directory: string): void => {
+    for (const [name, size, , target] of nodes) {
+      const path = `${directory}/${name}`;
+
+      if (Array.isArray(target)) {
+        walk(target, path);
+      } else if (size >= 0) {
+        const stats = httpIndex.getInode(path)?.getData?.();
+
+        if (stats && stats.size < 0) stats.size = size;
+      }
+    }
+  };
+
+  walk(fsroot, "");
+};
+
 const parse9pV4ToV3 = (fs9p: FS9PV4[], path = "/"): FS9PV3[] =>
   fs9p.map(([name, mtime, size, target]) => {
     const targetPath = join(path, name);
