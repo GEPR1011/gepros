@@ -103,39 +103,30 @@ export const parseDirectory = (array: FS9PV4[]): BFSFS => {
 
 export const fs9pToBfs = (): BFSFS => parseDirectory(fsroot);
 
-type SizedInode = { getData?: () => { size: number } };
-type HttpIndexBackend = {
-  _index?: { getInode: (path: string) => SizedInode | null };
+type HttpRequestBackend = {
+  _requestFileSizeAsync?: (
+    path: string,
+    callback: (error: Error | null, size: number) => void
+  ) => void;
 };
 
 /**
- * BrowserFS builds every file in an HTTPRequest listing with size -1, and its
- * stat() then asks the server with a HEAD request, trusting Content-Length.
- * Hosts that gzip text (GitHub Pages, Apache with mod_deflate) answer with the
- * compressed length, so a 10 KB JSON file is recorded as 3 KB and every later
- * read comes back truncated. Seeding the real sizes from the 9p index before
- * anything is read means the HEAD request never happens.
+ * BrowserFS lists every HTTP file with size -1 and, on the first stat, asks
+ * the server with a HEAD request, trusting Content-Length. Hosts that gzip
+ * text (GitHub Pages, Apache with mod_deflate) answer with the compressed
+ * length, and since the overlay only takes the size from the downloaded body
+ * while it is still -1, the real file is then rejected for not matching.
+ * Leaving the size unknown until the file is read keeps it honest; callers
+ * that need it sooner get it from the 9p index (see stat in useAsyncFs).
  */
-export const seedHttpFileSizes = (backend: unknown): void => {
-  const httpIndex = (backend as HttpIndexBackend | undefined)?._index;
+export const skipHttpSizeRequests = (backend: unknown): void => {
+  const httpBackend = backend as HttpRequestBackend | undefined;
 
-  if (!httpIndex) return;
+  if (typeof httpBackend?._requestFileSizeAsync !== "function") return;
 
-  const walk = (nodes: FS9PV4[], directory: string): void => {
-    for (const [name, size, , target] of nodes) {
-      const path = `${directory}/${name}`;
-
-      if (Array.isArray(target)) {
-        walk(target, path);
-      } else if (size >= 0) {
-        const stats = httpIndex.getInode(path)?.getData?.();
-
-        if (stats && stats.size < 0) stats.size = size;
-      }
-    }
-  };
-
-  walk(fsroot, "");
+  httpBackend._requestFileSizeAsync = (_path, callback) =>
+    // eslint-disable-next-line unicorn/no-null
+    callback(null, UNKNOWN_SIZE);
 };
 
 const parse9pV4ToV3 = (fs9p: FS9PV4[], path = "/"): FS9PV3[] =>

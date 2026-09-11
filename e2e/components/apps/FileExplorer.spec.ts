@@ -326,14 +326,20 @@ test.describe("has files & folders", () => {
   });
 
   test("has tooltip", async ({ page }) => {
-    const responsePromise = page.waitForResponse(TEST_ROOT_FILE_TEXT);
+    const sizeRequests: string[] = [];
+
+    page.on("request", (request) => {
+      if (request.method() === "HEAD") sizeRequests.push(request.url());
+    });
 
     await clickFileExplorerEntry(TEST_ROOT_FILE, { page });
-
-    expect((await responsePromise).ok()).toBeTruthy();
     await fileExplorerEntryHasTooltip(TEST_ROOT_FILE, TEST_ROOT_FILE_TOOLTIP, {
       page,
     });
+
+    // The size comes from the file index. Asking the server instead gets the
+    // gzipped Content-Length from hosts that compress, and reads then fail.
+    expect(sizeRequests).toEqual([]);
   });
 
   test.describe("can open", () => {

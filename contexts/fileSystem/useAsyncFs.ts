@@ -14,7 +14,7 @@ import * as BrowserFS from "public/System/BrowserFS/browserfs.min.js";
 import {
   UNKNOWN_STATE_CODES,
   get9pSize,
-  seedHttpFileSizes,
+  skipHttpSizeRequests,
   supportsIndexedDB,
 } from "contexts/fileSystem/core";
 import FileSystemConfig from "contexts/fileSystem/FileSystemConfig";
@@ -290,7 +290,7 @@ const useAsyncFs = (): AsyncFSModule => {
             | undefined;
 
           // Must run before the first stat, or files get the gzipped size.
-          seedHttpFileSizes(overlay?.getOverlayedFileSystems?.().readable);
+          skipHttpSizeRequests(overlay?.getOverlayedFileSystems?.().readable);
 
           fsRef.current = loadedFs;
           setFs(loadedFs);
