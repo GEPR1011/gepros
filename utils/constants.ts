@@ -22,9 +22,9 @@ export const DEFAULT_CLOCK_SOURCE: ClockSource = "local";
 
 export const DEFAULT_CLOSE_EFFECT = "None";
 
-export const DEFAULT_THEME: ThemeName = "defaultTheme";
+export const DEFAULT_THEME: ThemeName = "gruvboxTheme";
 
-export const DEFAULT_WALLPAPER = "GALAXY";
+export const DEFAULT_WALLPAPER = "VANTA_NET";
 
 export const DEFAULT_WALLPAPER_FIT: WallpaperFit = "fill";
 
@@ -380,7 +380,7 @@ export const PACKAGE_DATA = {
     email: "dustinbrett@gmail.com",
     name: "Dustin Brett",
     npub: "npub10uc7hg6wdxhhd7ee8x9c5lr9d0ux7272rv2m0mc03ds54q7quxjss02r3p",
-    url: "https://dustinbrett.com",
+    url: "https://gepr.site",
   },
   description: "Desktop environment in the browser",
   license: "MIT",

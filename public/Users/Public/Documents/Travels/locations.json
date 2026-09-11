@@ -1,0 +1,240 @@
+{
+  "title": "Travels",
+  "subtitle": "Software Engineer + World Traveler",
+  "locations": [
+    {
+      "id": "mocambique",
+      "city": "Moçambique",
+      "country": "Tete e Cabo Delgado",
+      "lat": -14.5,
+      "lon": 36.0,
+      "period": "2024 — hoje",
+      "role": "Liderança de projeto e desenvolvimento",
+      "summary": "Base atual. Lidero um projeto infantil na província de Tete e desenvolvo o painel interno de uma organização humanitária em Cabo Delgado.",
+      "highlights": [
+        "Acompanhamento de crianças e adolescentes em situação de vulnerabilidade",
+        "Campanhas de arrecadação com mobilização da comunidade e prestação de contas",
+        "Painel web que substituiu a coleta manual de relatórios semanais das equipes de campo"
+      ],
+      "stack": [
+        "Next.js",
+        "TypeScript",
+        "PostgreSQL",
+        "Docker"
+      ],
+      "places": [
+        {
+          "id": "tete",
+          "name": "Tete",
+          "lat": -15.7,
+          "lon": 32.9,
+          "note": "Projeto infantil — 2024 a hoje"
+        },
+        {
+          "id": "cabo-delgado",
+          "name": "Cabo Delgado",
+          "lat": -12.6,
+          "lon": 39.5,
+          "note": "Painel interno da organização, em Pemba — 2026"
+        }
+      ]
+    },
+    {
+      "id": "brasil",
+      "city": "Brasil",
+      "country": "Pará, Maranhão e Tocantins",
+      "lat": -6.5,
+      "lon": -48.5,
+      "period": "2022 — 2023",
+      "role": "Líder de equipes",
+      "summary": "Ações humanitárias com povos indígenas e comunidades ribeirinhas em três estados, além da formação em Imperatriz.",
+      "highlights": [
+        "Planejamento de atividades, divisão de responsabilidades e acompanhamento em campo",
+        "Escuta ativa e parceria com lideranças locais",
+        "Logística, triagem e distribuição de cestas básicas e itens essenciais"
+      ],
+      "stack": [],
+      "places": [
+        {
+          "id": "para",
+          "name": "Pará",
+          "lat": -3.79,
+          "lon": -52.48,
+          "note": "Projetos humanitários — 2023"
+        },
+        {
+          "id": "maranhao",
+          "name": "Maranhão",
+          "lat": -5.42,
+          "lon": -45.44,
+          "note": "Projetos humanitários (2023) e formação em Imperatriz (2022)"
+        },
+        {
+          "id": "tocantins",
+          "name": "Tocantins",
+          "lat": -10.25,
+          "lon": -48.32,
+          "note": "Projetos humanitários — 2023"
+        }
+      ]
+    },
+    {
+      "id": "colombia",
+      "city": "Colômbia",
+      "country": "Valle del Cauca",
+      "lat": 3.8,
+      "lon": -76.4,
+      "period": "set — nov 2022",
+      "role": "Instituto Lugar de Ajuda",
+      "summary": "Trabalho humanitário de campo pelo Instituto Lugar de Ajuda, em três cidades do Valle del Cauca, cerca de um mês em cada, apoiando projetos locais já existentes.",
+      "highlights": [
+        "Melhoria da infraestrutura de organização das instituições atendidas",
+        "Treinamento de lideranças locais para dar continuidade às atividades",
+        "Distribuição de mantimentos e operação da logística de entrega"
+      ],
+      "stack": [],
+      "places": [
+        {
+          "id": "valle-del-cauca",
+          "name": "Valle del Cauca",
+          "lat": 3.8,
+          "lon": -76.4,
+          "note": "Cali, Palmira e Pradera — cerca de 1 mês em cada, set a nov 2022"
+        }
+      ]
+    }
+  ],
+  "orbit": {
+    "name": "REMOTO",
+    "label": "Trabalho remoto",
+    "summary": "Projetos entregues à distância, sem lugar no mapa. Do desenho do sistema à publicação e à operação.",
+    "projects": [
+      {
+        "id": "llmforstudentsos",
+        "name": "LLMforStudentsOS",
+        "role": "Em desenvolvimento",
+        "period": "2026 — hoje",
+        "tagline": "Distribuição Linux · workstation para desenvolvedores",
+        "summary": "Distribuição Linux própria, montada como workstation para desenvolvedores. É o que estou construindo agora.",
+        "stack": [
+          "Linux"
+        ]
+      },
+      {
+        "id": "orbplugin",
+        "name": "OrbPlugin",
+        "role": "Game design e backend",
+        "period": "2025 — 2026",
+        "tagline": "Java 21 · Maven · servidor Paper 1.21 · MMOItems + MythicLib",
+        "summary": "Sistema de itens e economia estilo ARPG, com Path of Exile 2 como referência. O jogador usa consumíveis para adicionar, rerolar e corromper modificadores em itens, perseguindo tiers de raridade.",
+        "sections": [
+          {
+            "title": "A ideia que sustenta o sistema",
+            "items": [
+              "A mesma orb que modifica um item é a moeda que compra outro: toda decisão de crafting compete com uma decisão de compra, e é isso que dá peso à economia.",
+              "Modificar item é aposta — adicionar, rerolar e corromper têm resultado incerto dentro de bandas definidas, então o jogador escolhe entre guardar o que tem e arriscar por mais.",
+              "Trata tanto itens do framework de RPG quanto itens comuns do jogo."
+            ]
+          },
+          {
+            "title": "Modelo de modificadores",
+            "items": [
+              "Pools separadas por tipo de item — arma, armadura, acessório, ferramenta, escudo — mais variantes corrompidas.",
+              "Cada modificador rola dentro de uma banda com base, escala e dispersão configuráveis, e teto próprio.",
+              "Tiers de S a F com liberação condicionada a nível e raridade: o topo exige item único e nível alto.",
+              "Seis presságios de end-game, craftados em ritual, que liberam um sétimo modificador e multiplicadores."
+            ]
+          },
+          {
+            "title": "Onde está a complexidade",
+            "items": [
+              "Serviço de mitigação de dano que assume prioridade sobre o cálculo nativo da engine e ultrapassa o teto de armadura embutido — reimplementar defesa por cima de um sistema que já existe é a parte mais delicada do plugin.",
+              "Camada de dano elemental ofensivo com efeitos associados.",
+              "Efeitos aplicados por tick para regeneração de vida, mana e roubo de vida.",
+              "Trava de equipamento por faixa de nível, impedindo que item de tier alto seja usado cedo demais."
+            ]
+          },
+          {
+            "title": "Crafting em estações do mundo",
+            "items": [
+              "Três estações construídas no mundo em vez de menus: altar de ritual, caldeirão e forja.",
+              "O caldeirão eleva o nível das orbs e desloca a janela de tier para cima — progressão que muda a distribuição de resultados, não só o número final.",
+              "A forja é um minigame multi-etapa de aquecer, modelar, resfriar e refinar."
+            ]
+          },
+          {
+            "title": "Economia",
+            "items": [
+              "Marketplace global com listagens custodiadas: o item sai do inventário e fica retido até a venda.",
+              "Taxa cobrada por transação, funcionando como dreno de moeda.",
+              "NPC comerciante itinerante, com rotas e estoque de itens comuns pré-forjados."
+            ]
+          },
+          {
+            "title": "Operação",
+            "items": [
+              "Configuração e pools de modificadores em YAML, recarregáveis em runtime sem reiniciar o servidor.",
+              "Módulos de crafting e marketplace isolados do núcleo, cada um com a própria persistência."
+            ]
+          }
+        ],
+        "stack": [
+          "Java 21",
+          "Maven",
+          "Paper API",
+          "YAML"
+        ],
+        "url": "https://github.com/GEPR1011/OrbPlugin"
+      },
+      {
+        "id": "louiplugin",
+        "name": "LouiPlugin",
+        "role": "Autor",
+        "period": "2026",
+        "tagline": "Java 21 · Paper/Spigot 1.21+ · zero dependências",
+        "summary": "Ferramenta de moderação que substitui o banimento por contenção temporária: o jogador é isolado por um tempo determinado e devolvido exatamente ao ponto em que estava.",
+        "sections": [
+          {
+            "title": "A inversão que define a ferramenta",
+            "items": [
+              "Em vez de tirar o jogador do mundo, tira o mundo do jogador: ele segue conectado, contido e sob controle do staff.",
+              "A punição tem prazo e devolve tudo, então errar a dose não custa um jogador ao servidor.",
+              "O castigo é visível para quem o cumpre — barra permanente com o motivo e o tempo restante."
+            ]
+          },
+          {
+            "title": "O problema difícil: devolver o estado",
+            "items": [
+              "Restauração exata de posição, modo de jogo e permissão de voo ao fim do prazo.",
+              "Estado persistido em disco: sobrevive a reinício, reload e logout, com o tempo correndo em relógio real.",
+              "Funciona com o jogador offline, então desconectar não interrompe nem adia o castigo."
+            ]
+          },
+          {
+            "title": "Robustez num servidor que tem outros plugins",
+            "items": [
+              "Rotina de reconciliação a cada segundo que reaplica o estado caso outro plugin interfira — o plugin assume que não está sozinho.",
+              "Teleportes externos são bloqueados, incluindo os disparados por outros plugins.",
+              "Presos simultâneos recebem faixas de altura próprias, sem colisão entre eles."
+            ]
+          },
+          {
+            "title": "Arquitetura",
+            "items": [
+              "Modos de punição plugáveis: o vazio e uma jail em coordenada definida pelo staff convivem sob a mesma interface.",
+              "Perfis de efeito extraídos do modo, permitindo criar variações sem tocar no núcleo.",
+              "Quatro permissões separadas para uso, isenção, notificação e administração.",
+              "Nenhuma dependência obrigatória; integração com PlaceholderAPI é opcional."
+            ]
+          }
+        ],
+        "stack": [
+          "Java 21",
+          "Paper API",
+          "PlaceholderAPI"
+        ],
+        "url": "https://github.com/GEPR1011/LouiPlugin"
+      }
+    ]
+  }
+}

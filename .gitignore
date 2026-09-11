@@ -37,3 +37,8 @@ public/Users/Public/**
 !public/Users/Public/Start Menu/Games/Quake III Arena.url
 !public/Users/Public/Start Menu/Games/Space Cadet.url
 !public/Users/Public/Videos
+
+!public/Users/Public/Desktop/*.url
+!public/Users/Public/Documents/Travels
+!public/Users/Public/Documents/Travels/**
+!public/Users/Public/Documents/DOOM.jsdos

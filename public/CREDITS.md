@@ -120,3 +120,10 @@ This project is greatly augmented by code from the open source community. Thank 
 - [Wasmer Registry](https://docs.wasmer.io/registry)
 - [Winamp Skin Museum](https://skins.webamp.org/)
 - [Weather Report](https://github.com/chubin/wttr.in)
+
+## Artwork
+
+- Icons: gruvbox icon set taken from [icefish-OS](https://github.com/aptrinh/icefish-OS), a gruvbox fork of daedalOS. That project ships no attribution for them; visually they are a gruvbox recolor in the lineage of [Papirus](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) / [Gruvbox Plus](https://github.com/SylEleuth/gruvbox-plus-icon-pack), both GPL-3.0. Confirm the upstream license before any commercial use.
+- [Vanta.js](https://github.com/tengbao/vanta) NET effect, used for the default wallpaper.
+- DOOM (episódio shareware, id Software 1993). A id Software distribuiu o primeiro episódio como shareware, autorizando cópia e redistribuição gratuitas. Os WADs comerciais de DOOM e DOOM II não têm essa permissão e não acompanham este projeto.
+
