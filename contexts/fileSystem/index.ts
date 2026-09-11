@@ -4,7 +4,7 @@ import useFileSystemContextState, {
 } from "contexts/fileSystem/useFileSystemContextState";
 
 const { Provider, useContextActions, useStateSelector } =
-  contextActionSelectorFactory(useFileSystemContextState);
+  contextActionSelectorFactory("fileSystem", useFileSystemContextState);
 
 export const useFs = (): FileSystemContextState["fs"] =>
   useStateSelector((state) => state.fs);

@@ -14,21 +14,54 @@ type ActionStateSelectorContext<A, S> = {
   useStateSelector: <T>(selector: (state: S) => T) => T;
 };
 
+type ContextEntry = {
+  ActionsContext: React.Context<unknown>;
+  store: { current: unknown; listeners: Set<() => void> };
+};
+
 // useLayoutEffect warns during SSR; notifications only run client-side
 const useIsomorphicLayoutEffect =
   typeof window === "undefined" ? useEffect : useLayoutEffect;
+
+// Fast Refresh re-evaluates a context module without remounting every consumer.
+// A context created fresh on each evaluation would leave those consumers reading
+// the old object, which falls back to the empty default — actions come back
+// undefined and selectors read nothing. Keying by name keeps one context and one
+// store per logical context for the life of the page. In production a module is
+// evaluated once, so this resolves to a single entry and costs nothing.
+const globalScope = globalThis as typeof globalThis & {
+  __contextRegistry?: Map<string, ContextEntry>;
+};
+
+globalScope.__contextRegistry ??= new Map<string, ContextEntry>();
+
+const registry = globalScope.__contextRegistry;
 
 // Actions live in a context whose value keeps a stable identity; state is
 // only reachable through selectors, so consumers re-render when their
 // selected value changes rather than on every state update
 const contextActionSelectorFactory = <A, S>(
+  name: string,
   useContextState: () => { actions: A; state: S },
   ContextComponent?: React.JSX.Element
 ): ActionStateSelectorContext<A, S> => {
-  const ActionsContext = createContext(Object.create(null) as A);
-  const store = {
-    current: Object.create(null) as S,
-    listeners: new Set<() => void>(),
+  let entry = registry.get(name);
+
+  if (!entry) {
+    entry = {
+      ActionsContext: createContext<unknown>(Object.create(null)),
+      store: {
+        current: Object.create(null) as unknown,
+        listeners: new Set<() => void>(),
+      },
+    };
+    registry.set(name, entry);
+  }
+
+  const ActionsContext = entry.ActionsContext as React.Context<A>;
+  const store = entry.store as {
+    current: S;
+    listeners: Set<() => void>;
   };
   const subscribe = (listener: () => void): (() => void) => {
     store.listeners.add(listener);

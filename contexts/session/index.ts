@@ -7,7 +7,7 @@ import {
 import useSessionContextState from "contexts/session/useSessionContextState";
 
 const { Provider, useContextActions, useStateSelector } =
-  contextActionSelectorFactory(useSessionContextState);
+  contextActionSelectorFactory("session", useSessionContextState);
 
 const NO_SORT_ORDER: Partial<SortOrder> = [];
 const NO_WINDOW_STATE = Object.create(null) as WindowState;
@@ -40,7 +40,7 @@ export const useSessionLoaded = (): boolean =>
   useStateSelector((state) => state.sessionLoaded);
 
 export const useSortOrder = (directory: string): Partial<SortOrder> =>
-  useStateSelector((state) => state.sortOrders[directory] || NO_SORT_ORDER);
+  useStateSelector((state) => state.sortOrders?.[directory] || NO_SORT_ORDER);
 
 export const useStackOrder = (): string[] =>
   useStateSelector((state) => state.stackOrder);
@@ -51,7 +51,7 @@ export const useThemeName = (): SessionContextState["themeName"] =>
 export const useView = (
   directory: string
 ): SessionContextState["views"][string] | undefined =>
-  useStateSelector((state) => state.views[directory]);
+  useStateSelector((state) => state.views?.[directory]);
 
 export const useWallpaperFit = (): SessionContextState["wallpaperFit"] =>
   useStateSelector((state) => state.wallpaperFit);
@@ -60,6 +60,6 @@ export const useWallpaperImage = (): string =>
   useStateSelector((state) => state.wallpaperImage);
 
 export const useWindowState = (id: string): WindowState =>
-  useStateSelector((state) => state.windowStates[id] || NO_WINDOW_STATE);
+  useStateSelector((state) => state.windowStates?.[id] || NO_WINDOW_STATE);
 
 export { Provider as SessionProvider, useContextActions as useSessionActions };

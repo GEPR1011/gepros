@@ -53,6 +53,7 @@ import {
   getHtmlToImage,
   getMimeType,
   getTZOffsetISOString,
+  getYouTubeUrlId,
   isSafari,
   isYouTubeUrl,
   resizeImage,
@@ -492,7 +493,9 @@ export const getInfoWithExtension = (
               }
             });
           } else if (isYouTubeUrl(url)) {
-            const ytId = new URL(url).pathname.replace("/", "");
+            // `watch?v=<id>` keeps the id in the query, so reading the pathname
+            // alone yields "watch" and breaks both the cache path and the thumb.
+            const ytId = getYouTubeUrlId(url);
             const cachedIconPath = join(
               YT_ICON_CACHE,
               `${ytId}${ICON_CACHE_EXTENSION}`

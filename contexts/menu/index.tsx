@@ -5,7 +5,7 @@ import useMenuContextState, {
 } from "contexts/menu/useMenuContextState";
 
 const { Provider, getCurrentState, useContextActions, useStateSelector } =
-  contextActionSelectorFactory(useMenuContextState, <Menu />);
+  contextActionSelectorFactory("menu", useMenuContextState, <Menu />);
 
 export const useMenu = (): MenuState => useStateSelector((state) => state.menu);
 
