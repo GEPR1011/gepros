@@ -104,6 +104,17 @@ const directory: Processes = {
     icon: FOLDER_ICON,
     title: "File Explorer",
   },
+  Globe: {
+    Component: dynamic(() => import("components/apps/Globe")),
+    backgroundColor: "#282828",
+    defaultSize: {
+      height: 520,
+      width: 880,
+    },
+    icon: "/System/Icons/globe.png",
+    singleton: true,
+    title: "World Traveler",
+  },
   IRC: {
     Component: dynamic(() => import("components/apps/IRC")),
     backgroundColor: "#FFF",
