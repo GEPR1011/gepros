@@ -375,10 +375,9 @@ export const DEFAULT_SCROLLBAR_WIDTH = 17;
 export const TASKBAR_HEIGHT = 30;
 
 export const PACKAGE_DATA = {
-  alias: "daedalOS",
+  alias: "geprOS",
   author: {
-    email: "dustinbrett@gmail.com",
-    name: "Dustin Brett",
+    name: "Guilherme Elias Pereira Ramalho",
     // Contato global do Messenger. Vazio, o app segue funcionando: cada visitante
     // recebe um par de chaves proprio. Preencher com o npub (chave publica) do
     // dono do site faz as mensagens chegarem ate ele.
