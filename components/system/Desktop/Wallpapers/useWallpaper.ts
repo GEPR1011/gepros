@@ -130,6 +130,11 @@ const useWallpaper = (
           },
           waveSpeed: prefersReducedMotion ? REDUCED_MOTION_PERCENT : 1,
         };
+      } else if (wallpaperName === "VANTA_NET") {
+        config = {
+          showDots: !isAlt,
+          speed: prefersReducedMotion ? REDUCED_MOTION_PERCENT : 1,
+        };
       } else if (wallpaperImage.startsWith("MATRIX")) {
         config = {
           animationSpeed: prefersReducedMotion ? REDUCED_MOTION_PERCENT : 1,

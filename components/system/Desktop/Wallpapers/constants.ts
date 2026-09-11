@@ -24,6 +24,7 @@ export const WALLPAPER_PATHS: Record<
   STABLE_DIFFUSION: () =>
     import("components/system/Desktop/Wallpapers/StableDiffusion"),
   VANTA: () => import("components/system/Desktop/Wallpapers/vantaWaves"),
+  VANTA_NET: () => import("components/system/Desktop/Wallpapers/vantaNet"),
 };
 
 export const WALLPAPER_WORKERS: Record<string, () => Worker> = {
@@ -118,6 +119,10 @@ export const WALLPAPER_MENU: WallpaperMenuItem[] = [
     id: "STABLE_DIFFUSION",
     name: "Stable Diffusion (beta)",
     requiresWebGPU: true,
+  },
+  {
+    id: "VANTA_NET",
+    name: "Vanta Net",
   },
   {
     id: "VANTA",

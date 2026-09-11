@@ -1,3 +1,7 @@
+import {
+  type VantaNet,
+  type VantaNetSettings,
+} from "components/system/Desktop/Wallpapers/vantaNet/types";
 import { type OffscreenRenderProps } from "components/system/Desktop/Wallpapers/types";
 
 type VantaWavesCycleColor = {
@@ -53,8 +57,9 @@ export type VantaWaves = {
 };
 
 export type VantaObject = {
+  NET: (settings: VantaNetSettings) => VantaNet;
   WAVES: (settings: VantaWavesSettings) => VantaWaves;
-  current: VantaWaves;
+  current: VantaNet | VantaWaves;
 };
 
 declare global {
