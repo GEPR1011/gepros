@@ -124,6 +124,7 @@ This project is greatly augmented by code from the open source community. Thank 
 ## Artwork
 
 - World Traveler icon drawn from the [Natural Earth](https://www.naturalearthdata.com/) coastlines the globe already uses (public domain).
+- DOOM shortcut icon drawn for this project; no artwork from the game is used. DOOM is a trademark of id Software.
 - [Vanta.js](https://github.com/tengbao/vanta) NET effect, used for the default wallpaper.
 - DOOM (episódio shareware, id Software 1993). A id Software distribuiu o primeiro episódio como shareware, autorizando cópia e redistribuição gratuitas. Os WADs comerciais de DOOM e DOOM II não têm essa permissão e não acompanham este projeto.
 
