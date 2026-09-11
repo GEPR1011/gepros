@@ -356,7 +356,9 @@ const useSessionContextState = (): {
               });
             }
             setIconPositions(session.iconPositions);
-          } else if (typeof session.iconPositions !== "object") {
+          } else {
+            // A saved session that never placed an icon still gets the
+            // default layout, so pinned desktop icons reach returning visitors
             setIconPositions(
               DEFAULT_SESSION.iconPositions ||
                 (Object.create(null) as IconPositions)
