@@ -1,8 +1,9 @@
 # Hostinger (Apache / LiteSpeed) — coloque este arquivo na raiz de public_html.
 #
-# Sem os dois headers abaixo o navegador não libera SharedArrayBuffer, e as
-# partes pesadas do sistema param: emuladores, conversão com ffmpeg e o Chess.
-# O resto do desktop funciona sem eles, então a falha é silenciosa e parcial.
+# Os dois headers abaixo liberam SharedArrayBuffer. São opcionais: sem eles o
+# sistema inteiro funciona, incluindo o DOOM (js-dos em modo worker, testado).
+# O ganho é desempenho — o Chess, por exemplo, troca o Stockfish de uma thread
+# pelo multithread quando o navegador está isolado.
 <IfModule mod_headers.c>
   Header always set Cross-Origin-Opener-Policy "same-origin"
   Header always set Cross-Origin-Embedder-Policy "credentialless"

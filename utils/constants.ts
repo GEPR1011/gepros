@@ -379,7 +379,10 @@ export const PACKAGE_DATA = {
   author: {
     email: "dustinbrett@gmail.com",
     name: "Dustin Brett",
-    npub: "npub10uc7hg6wdxhhd7ee8x9c5lr9d0ux7272rv2m0mc03ds54q7quxjss02r3p",
+    // Contato global do Messenger. Vazio, o app segue funcionando: cada visitante
+    // recebe um par de chaves proprio. Preencher com o npub (chave publica) do
+    // dono do site faz as mensagens chegarem ate ele.
+    npub: "",
     url: "https://gepr.site",
   },
   description: "Desktop environment in the browser",
