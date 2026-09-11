@@ -5,12 +5,14 @@ import {
   MILLISECONDS_IN_SECOND,
 } from "utils/constants";
 
+// public.relaying.io and relayable.org stopped answering; Damus and Primal
+// relays are defaults in the common Nostr apps, so messages reach the owner.
 export const BASE_RW_RELAYS = [
   "wss://nos.lol",
   "wss://nostr.mom",
-  "wss://public.relaying.io",
+  "wss://relay.damus.io",
+  "wss://relay.primal.net",
   "wss://relay1.nostrchat.io",
-  "wss://relayable.org",
 ];
 
 export const METADATA_KIND = 0;
