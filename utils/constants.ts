@@ -378,10 +378,10 @@ export const PACKAGE_DATA = {
   alias: "geprOS",
   author: {
     name: "Guilherme Elias Pereira Ramalho",
-    // Contato global do Messenger. Vazio, o app segue funcionando: cada visitante
-    // recebe um par de chaves proprio. Preencher com o npub (chave publica) do
-    // dono do site faz as mensagens chegarem ate ele.
-    npub: "",
+    // Contato global do Messenger: chave publica do dono do site. Cada visitante
+    // recebe um par de chaves proprio, e as mensagens enviadas a este contato
+    // chegam ao app Nostr do dono.
+    npub: "npub18agaeh6u70nczzewtkglsv3kudsh9zm4su4l73nf2ph48g7v0zzqtjzr9w",
     url: "https://gepr.site",
   },
   description: "Desktop environment in the browser",
