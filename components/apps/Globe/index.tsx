@@ -152,6 +152,13 @@ const Globe: FC<ComponentProcessProps> = () => {
 
   const backLabel =
     selection?.kind === "project" ? orbitLabel(data) : "visão geral";
+  /** Places with neither role nor period (only a line about the work) skip it. */
+  const locationMeta =
+    selection?.kind === "location"
+      ? [selection.location.role, selection.location.period]
+          .filter(Boolean)
+          .join(" · ")
+      : "";
 
   if (!data) return <StyledLoading />;
 
@@ -182,11 +189,7 @@ const Globe: FC<ComponentProcessProps> = () => {
           <>
             <h2>{selection.location.city}</h2>
             <div className="country">{selection.location.country}</div>
-            <div className="meta">
-              {[selection.location.role, selection.location.period]
-                .filter(Boolean)
-                .join(" · ")}
-            </div>
+            {locationMeta && <div className="meta">{locationMeta}</div>}
             {selection.location.summary && (
               <p className="summary">{selection.location.summary}</p>
             )}

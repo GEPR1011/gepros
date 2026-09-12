@@ -102,6 +102,32 @@
           "note": "Cali, Palmira e Pradera — cerca de 1 mês em cada, set a nov 2022"
         }
       ]
+    },
+    {
+      "id": "afeganistao",
+      "city": "Afeganistão",
+      "country": "Trabalho social",
+      "lat": 33.9,
+      "lon": 67.7,
+      "stack": []
+    },
+    {
+      "id": "venezuela",
+      "city": "Venezuela",
+      "country": "Trabalho humanitário e desenvolvimento",
+      "role": "Administração de projetos infantis",
+      "lat": 7.5,
+      "lon": -66.0,
+      "stack": []
+    },
+    {
+      "id": "africa-do-sul",
+      "city": "África do Sul",
+      "country": "Em andamento",
+      "period": "ainda trabalhando",
+      "lat": -29.0,
+      "lon": 24.7,
+      "stack": []
     }
   ],
   "orbit": {
